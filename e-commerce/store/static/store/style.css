@@ -1,0 +1,28 @@
+/* Custom styles for the e-commerce site */
+.card-img-top {
+    object-fit: cover;
+    height: 250px;
+    aspect-ratio: 1 / 1;
+}
+.img-thumbnail.thumb-img {
+    height: 70px !important;
+    width: 70px !important;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+#mainProductImage {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+body {
+    background: #f8f9fa;
+}
+.card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}

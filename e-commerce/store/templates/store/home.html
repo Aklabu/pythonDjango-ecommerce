@@ -1,0 +1,31 @@
+{% extends 'store/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- Banner Section -->
+<div class="mb-5">
+  <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D" class="img-fluid w-100 rounded" alt="Shop Banner" style="max-height: 450px; object-fit: cover;">
+</div>
+<h2>Products by Category</h2>
+<div class="row">
+  {% for category, products in products_by_category.items %}
+    <h3 class="mt-4">{{ category.name }}</h3>
+    <div class="row">
+      {% for product in products %}
+        <div class="col-6 col-sm-4 col-md-3 mb-4">
+          <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+            <div class="card h-100">
+              <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text small text-muted">{{ product.short_description }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <p>No products in this category.</p>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

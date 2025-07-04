@@ -1,0 +1,49 @@
+{% extends 'store/base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-7 d-flex align-items-start gap-3 flex-wrap flex-md-nowrap">
+    <div>
+      <img id="mainProductImage" src="{{ product.image.url }}" class="img-fluid rounded mb-3" style="max-width: 600px; max-height: 600px; width: 100%; aspect-ratio: 1/1; object-fit: cover;" alt="{{ product.name }}">
+    </div>
+    <div class="d-flex flex-md-column flex-row gap-2 mb-3">
+      <img src="{{ product.image.url }}" class="img-thumbnail thumb-img" style="cursor:pointer;" onclick="document.getElementById('mainProductImage').src=this.src;">
+      {% if product.image1 %}
+        <img src="{{ product.image1.url }}" class="img-thumbnail thumb-img" style="cursor:pointer;" onclick="document.getElementById('mainProductImage').src=this.src;">
+      {% endif %}
+      {% if product.image2 %}
+        <img src="{{ product.image2.url }}" class="img-thumbnail thumb-img" style="cursor:pointer;" onclick="document.getElementById('mainProductImage').src=this.src;">
+      {% endif %}
+      {% if product.image3 %}
+        <img src="{{ product.image3.url }}" class="img-thumbnail thumb-img" style="cursor:pointer;" onclick="document.getElementById('mainProductImage').src=this.src;">
+      {% endif %}
+      {% if product.image4 %}
+        <img src="{{ product.image4.url }}" class="img-thumbnail thumb-img" style="cursor:pointer;" onclick="document.getElementById('mainProductImage').src=this.src;">
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-md-5">
+    <h2>{{ product.name }}</h2>
+    <p class="text-muted mb-1">{{ product.short_description }}</p>
+    <p>{{ product.description }}</p>
+    <hr>
+    <h5>Recommended from {{ product.category.name }}</h5>
+    <div class="row">
+      {% for rec in recommendations %}
+        <div class="col-6 col-md-6 mb-3">
+          <a href="{% url 'product_detail' rec.id %}" class="text-decoration-none">
+            <div class="card h-100">
+              <img src="{{ rec.image.url }}" class="card-img-top" style="height:100px; object-fit:cover;">
+              <div class="card-body p-2">
+                <h6 class="card-title mb-0">{{ rec.name }}</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <p>No recommendations available.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
